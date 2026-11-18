@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: de610db815dfa3e438a2e1872286db8e
+guid: 64a66b68ed8376444aa23bd0bf1ae399
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8789100637672949465
-    second: Carro (5)_0
+      213: -8073753580129366455
+    second: Carro (3)_0
+  - first:
+      213: 3868950701025301591
+    second: Carro (3)_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 75
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,7 +116,29 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carro (5)_0
+      name: Carro (3)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ec95c35e344ff80800000000000000
+      internalID: -8073753580129366455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Carro (3)_1
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72938546987d60680800000000000000
-      internalID: -8789100637672949465
+      spriteID: 7549c1cf92641b530800000000000000
+      internalID: 3868950701025301591
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 83c196e3e626d6647a566bdcaa225d03
+    spriteID: 0766a957add159c479a9675185c7f246
     internalID: 0
     vertices: []
     indices: 
@@ -148,9 +173,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":160.0,"y":160.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":2.0},"gridSpriteSize":{"x":160.0,"y":160.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Carro (5)_0: -8789100637672949465
+      Carro (3)_0: -8073753580129366455
+      Carro (3)_1: 3868950701025301591
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6af53d14a548cea4b9c0e9f5fe00bc3f
+guid: 2fcdad0b9964cf64c95ee46e4b67471c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8116294893436369436
-    second: Carro (2)_0
+      213: 7672481128741470331
+    second: Poste (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carro (2)_0
+      name: Poste (1)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 160
-        height: 160
+        x: 119
+        y: 59
+        width: 82
+        height: 57
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4e58860ebc02d5f80800000000000000
-      internalID: -8116294893436369436
+      spriteID: b700680afe02a7a60800000000000000
+      internalID: 7672481128741470331
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 213508a90d11142458abccfa634b6a4e
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -146,11 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":160.0,"y":160.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Carro (2)_0: -8116294893436369436
+      Poste (1)_0: 7672481128741470331
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
