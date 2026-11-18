@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8643600953090554906}
   - component: {fileID: 7953903757277275673}
   - component: {fileID: 639553531582385126}
+  - component: {fileID: 5172989969540350949}
   - component: {fileID: 709885142245434122}
   - component: {fileID: 2269923183901758646}
   - component: {fileID: 2209572520790036835}
@@ -38,6 +39,7 @@ Transform:
   - {fileID: 4563598710771157721}
   - {fileID: 6414726715370156663}
   - {fileID: 2348792924563495571}
+  - {fileID: 7123603653356862418}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8643600953090554906
@@ -133,7 +135,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.02099578, y: -0.6989279}
+  m_Offset: {x: 0.020995796, y: -0.976513}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -143,7 +145,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.87486863, y: 0.8317375}
+  m_Size: {x: 0.87486863, y: 0.27656716}
   m_EdgeRadius: 0
 --- !u!50 &639553531582385126
 Rigidbody2D:
@@ -172,6 +174,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5172989969540350949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273628809626491384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3403850883575449f1b788b0c9810e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrdenacaoY
+  sprite: {fileID: 8643600953090554906}
+  pontoBase: {fileID: 7123603653356862418}
+  multiplicador: 100
 --- !u!114 &709885142245434122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,9 +311,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 2
-  m_LightType: 4
+  m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.426
+  m_FalloffIntensity: 0.63
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.75
   m_LightVolumeIntensity: 0
@@ -317,16 +334,16 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+    m_Center: {x: -0.0002503395, y: -0.000099658966, z: 0}
+    m_Extent: {x: 8.01045, y: 8.0109005, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
+  m_PointLightInnerRadius: 6.07
   m_PointLightOuterRadius: 11.11
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffSize: 7.51
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: -0.5, y: -0.5, z: 0}
@@ -362,7 +379,7 @@ Transform:
   m_GameObject: {fileID: 4115768285257032492}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: -0.3, z: 0}
+  m_LocalPosition: {x: 0.064, y: -0.266, z: 0}
   m_LocalScale: {x: 0.12496, y: 0.12496, z: 0.12496}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -417,7 +434,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6544669657341841266, guid: 5e9c5ac0f54bfd94db3bc3f7d2a46b24, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -425,7 +442,7 @@ SpriteRenderer:
   m_Size: {x: 7.36, y: 7.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4345034220017530562
 MonoBehaviour:
@@ -448,7 +465,7 @@ MonoBehaviour:
   intervaloVerificacao: 0.2
   pulsoPrefab: {fileID: 4615286182388793297, guid: 4547f0c7b08145a48bf0c33d50ef93ea, type: 3}
   cooldownPulso: 3
-  somPulso: {fileID: 8300000, guid: 04f244693504a0948a7ea0358af048f9, type: 3}
+  somPulso: {fileID: 8300000, guid: d83c51baa7c500349985e42efce1b56a, type: 3}
 --- !u!82 &1800318048151021355
 AudioSource:
   m_ObjectHideFlags: 0
@@ -576,6 +593,37 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &5623946961648818767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7123603653356862418}
+  m_Layer: 0
+  m_Name: Pontobase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7123603653356862418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5623946961648818767}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 144462034940238773}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7993356027912893052
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +668,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.054218564, g: 0.05660379, b: 0.0542008, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
