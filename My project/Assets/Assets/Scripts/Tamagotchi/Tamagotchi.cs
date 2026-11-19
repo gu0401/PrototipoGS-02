@@ -7,6 +7,8 @@ public class Tamagotchi : MonoBehaviour
     [Header("Referências")]
     [SerializeField] private Transform vovo;
     [SerializeField] private Text textoAlerta;
+    [SerializeField] private Image retratoOtto;
+    [SerializeField] private Sprite imagemPadraoOtto;
 
     [Header("Alertas")]
     [SerializeField] private float raioDeteccao = 2f;
@@ -25,12 +27,17 @@ public class Tamagotchi : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (imagemPadraoOtto == null && retratoOtto != null)
+            imagemPadraoOtto = retratoOtto.sprite;
     }
 
     void Start()
     {
         if (textoAlerta != null)
             textoAlerta.text = "";
+
+        AtualizarRetrato(null);
     }
 
     void Update()
@@ -64,14 +71,18 @@ public class Tamagotchi : MonoBehaviour
 
         if (onda == null)
         {
-            Debug.LogWarning("O Prefab precisa do script OndaSonora.");
+            Debug.LogWarning(
+                "O Prefab precisa do script OndaSonora."
+            );
+
             Destroy(pulso);
             return;
         }
 
         onda.ConfigurarDirecao(direcao);
 
-        proximoPulsoPermitido = Time.time + cooldownPulso;
+        proximoPulsoPermitido =
+            Time.time + cooldownPulso;
 
         if (audioSource != null && somPulso != null)
             audioSource.PlayOneShot(somPulso);
@@ -99,8 +110,13 @@ public class Tamagotchi : MonoBehaviour
             if (perigo == null)
                 continue;
 
-            Vector2 ponto = colisor.ClosestPoint(vovo.position);
-            float distancia = Vector2.Distance(vovo.position, ponto);
+            Vector2 ponto =
+                colisor.ClosestPoint(vovo.position);
+
+            float distancia = Vector2.Distance(
+                vovo.position,
+                ponto
+            );
 
             if (distancia < menorDistancia)
             {
@@ -110,9 +126,28 @@ public class Tamagotchi : MonoBehaviour
         }
 
         if (perigoProximo != null)
+        {
             textoAlerta.text = perigoProximo.Mensagem;
+            AtualizarRetrato(perigoProximo.ImagemOtto);
+        }
         else
+        {
             textoAlerta.text = "";
+            AtualizarRetrato(null);
+        }
+    }
+
+    void AtualizarRetrato(Sprite novaImagem)
+    {
+        if (retratoOtto == null)
+            return;
+
+        Sprite imagem = novaImagem != null
+            ? novaImagem
+            : imagemPadraoOtto;
+
+        retratoOtto.sprite = imagem;
+        retratoOtto.enabled = imagem != null;
     }
 
     void OnDrawGizmosSelected()
@@ -121,6 +156,9 @@ public class Tamagotchi : MonoBehaviour
             return;
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(vovo.position, raioDeteccao);
+        Gizmos.DrawWireSphere(
+            vovo.position,
+            raioDeteccao
+        );
     }
 }

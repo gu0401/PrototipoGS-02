@@ -15,6 +15,7 @@ public class DialogoManager : MonoBehaviour
         public string texto;
 
         public Sprite retrato;
+        public RuntimeAnimatorController animacaoRetrato;
     }
 
     [Header("Interface")]
@@ -22,6 +23,7 @@ public class DialogoManager : MonoBehaviour
     [SerializeField] private Text nomePersonagem;
     [SerializeField] private Text textoDialogo;
     [SerializeField] private Image retratoPersonagem;
+    [SerializeField] private Animator animatorRetrato;
 
     [Header("Configurações")]
     [SerializeField] private float velocidadeTexto = 0.04f;
@@ -29,8 +31,10 @@ public class DialogoManager : MonoBehaviour
     [Header("Som da Digitação")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip somDigitacao;
-    [SerializeField, Range(0f, 1f)] private float volumeSom = 0.25f;
-    [SerializeField, Min(1)] private int letrasPorSom = 2;
+    [SerializeField, Range(0f, 1f)]
+    private float volumeSom = 0.25f;
+    [SerializeField, Min(1)]
+    private int letrasPorSom = 2;
 
     [Header("Controles do Jogador")]
     [SerializeField] private PlayerInput inputJogador;
@@ -46,11 +50,20 @@ public class DialogoManager : MonoBehaviour
 
     void Awake()
     {
-        if (painelDialogo != null)
-            painelDialogo.SetActive(false);
-
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
+
+        if (animatorRetrato == null && retratoPersonagem != null)
+            animatorRetrato = retratoPersonagem.GetComponent<Animator>();
+
+        if (animatorRetrato != null)
+        {
+            animatorRetrato.updateMode = AnimatorUpdateMode.UnscaledTime;
+            animatorRetrato.enabled = false;
+        }
+
+        if (painelDialogo != null)
+            painelDialogo.SetActive(false);
     }
 
     void Update()
@@ -96,22 +109,58 @@ public class DialogoManager : MonoBehaviour
         nomePersonagem.text = fala.personagem;
         textoDialogo.text = "";
 
-        if (retratoPersonagem != null)
+        ConfigurarRetrato(fala);
+
+        digitacao = StartCoroutine(
+            DigitarTexto(fala.texto ?? "")
+        );
+    }
+
+    void ConfigurarRetrato(Fala fala)
+    {
+        if (retratoPersonagem == null)
+            return;
+
+        if (animatorRetrato != null)
         {
-            bool possuiRetrato = fala.retrato != null;
-
-            retratoPersonagem.gameObject.SetActive(possuiRetrato);
-
-            if (possuiRetrato)
-                retratoPersonagem.sprite = fala.retrato;
+            animatorRetrato.enabled = false;
+            animatorRetrato.runtimeAnimatorController = null;
+            animatorRetrato.speed = 1f;
         }
 
-        digitacao = StartCoroutine(DigitarTexto(fala.texto ?? ""));
+        bool temAnimacao =
+            fala.animacaoRetrato != null &&
+            animatorRetrato != null;
+
+        bool temRetrato =
+            fala.retrato != null || temAnimacao;
+
+        retratoPersonagem.gameObject.SetActive(temRetrato);
+
+        if (!temRetrato)
+            return;
+
+        if (fala.retrato != null)
+            retratoPersonagem.sprite = fala.retrato;
+
+        if (temAnimacao)
+        {
+            animatorRetrato.runtimeAnimatorController =
+                fala.animacaoRetrato;
+
+            animatorRetrato.updateMode =
+                AnimatorUpdateMode.UnscaledTime;
+
+            animatorRetrato.enabled = true;
+            animatorRetrato.Rebind();
+            animatorRetrato.speed = 1f;
+        }
     }
 
     IEnumerator DigitarTexto(string texto)
     {
         int contadorLetras = 0;
+        int frequencia = Mathf.Max(1, letrasPorSom);
 
         foreach (char letra in texto)
         {
@@ -121,9 +170,10 @@ public class DialogoManager : MonoBehaviour
             {
                 contadorLetras++;
 
-                if ((contadorLetras - 1) % letrasPorSom == 0)
+                if ((contadorLetras - 1) % frequencia == 0)
                 {
-                    if (audioSource != null && somDigitacao != null)
+                    if (audioSource != null &&
+                        somDigitacao != null)
                     {
                         audioSource.PlayOneShot(
                             somDigitacao,
@@ -133,10 +183,22 @@ public class DialogoManager : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSecondsRealtime(velocidadeTexto);
+            yield return new WaitForSecondsRealtime(
+                velocidadeTexto
+            );
         }
 
+        PararAnimacaoRetrato();
         digitacao = null;
+    }
+
+    void PararAnimacaoRetrato()
+    {
+        if (animatorRetrato != null &&
+            animatorRetrato.enabled)
+        {
+            animatorRetrato.speed = 0f;
+        }
     }
 
     void AvancarDialogo()
@@ -146,7 +208,10 @@ public class DialogoManager : MonoBehaviour
             StopCoroutine(digitacao);
             digitacao = null;
 
-            textoDialogo.text = falasAtuais[indiceFala].texto ?? "";
+            textoDialogo.text =
+                falasAtuais[indiceFala].texto ?? "";
+
+            PararAnimacaoRetrato();
             return;
         }
 
@@ -170,6 +235,8 @@ public class DialogoManager : MonoBehaviour
             StopCoroutine(digitacao);
             digitacao = null;
         }
+
+        PararAnimacaoRetrato();
 
         if (painelDialogo != null)
             painelDialogo.SetActive(false);

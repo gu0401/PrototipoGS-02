@@ -85,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2000
+  m_SortingOrder: -50
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1543256104145816086, guid: 9525ee4dca7b5be4e96a562d41b5f366, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlertaPerigo
   mensagem: "Cuidado! Buraco pr\xF3ximo!"
+  imagemOtto: {fileID: 0}
 --- !u!61 &7148808189544882845
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -187,8 +188,9 @@ MonoBehaviour:
   tipo: 3
   objetoRevelavel: {fileID: 4703294590370769884}
   somContato: {fileID: 8300000, guid: 0c5a7737a7aa3da40a92cb2a79596bf1, type: 3}
-  pontoRetorno: {fileID: 7391146407738032433}
   intervaloContato: 1
+  pontoRetorno: {fileID: 7391146407738032433}
+  pontosRetornoCarro: []
 --- !u!82 &3708359871249383006
 AudioSource:
   m_ObjectHideFlags: 0

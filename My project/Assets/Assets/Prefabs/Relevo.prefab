@@ -85,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1000
+  m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2015018417414378575, guid: 9525ee4dca7b5be4e96a562d41b5f366, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlertaPerigo
   mensagem: "Cuidado! Relevo na pista pr\xF3ximo! Verifique com a Guia."
+  imagemOtto: {fileID: 0}
 --- !u!61 &440944700056525881
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -187,8 +188,9 @@ MonoBehaviour:
   tipo: 3
   objetoRevelavel: {fileID: 3012782118287901005}
   somContato: {fileID: 8300000, guid: 0c5a7737a7aa3da40a92cb2a79596bf1, type: 3}
-  pontoRetorno: {fileID: 657848235682530739}
   intervaloContato: 1
+  pontoRetorno: {fileID: 657848235682530739}
+  pontosRetornoCarro: []
 --- !u!82 &3170822301359772600
 AudioSource:
   m_ObjectHideFlags: 0
