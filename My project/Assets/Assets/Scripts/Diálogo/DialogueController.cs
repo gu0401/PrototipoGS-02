@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
@@ -27,6 +28,10 @@ public class DialogueController : MonoBehaviour
     public Text nameText;
     public Text dialoguePanelText;
 
+    [Header("Next Scene")]
+    public string nextSceneName = "CasaLurdes";
+    public float delayBeforeNextScene = 1.5f;
+
     [Header("Animators")]
     public Animator pastDonaLurdesAnimator; // Dona Lurdes (talking)_0 no PastScene
     public Animator donaLurdesAnimator;     // Dona Lurdes Idle_0 no PresentScene
@@ -41,6 +46,7 @@ public class DialogueController : MonoBehaviour
 
     private bool isTyping;
     private bool dialogueFinished;
+    private bool isTransitioningScene;
 
     private string currentSentence;
 
@@ -200,6 +206,9 @@ public class DialogueController : MonoBehaviour
 
     private void Update()
     {
+        if (isTransitioningScene)
+            return;
+
         if (!Input.GetKeyDown(advanceKey))
             return;
 
@@ -251,6 +260,7 @@ public class DialogueController : MonoBehaviour
             {
                 dialogueFinished = true;
                 SetAllSpeaking(false);
+                StartCoroutine(TransitionToNextScene());
                 return;
             }
         }
@@ -436,6 +446,34 @@ public class DialogueController : MonoBehaviour
         dialogueFinished = false;
 
         ShowDialogue(currentDialogueIndex);
+    }
+
+    private IEnumerator TransitionToNextScene()
+    {
+        isTransitioningScene = true;
+        SetAllSpeaking(false);
+
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(false);
+
+        if (delayBeforeNextScene > 0f)
+            yield return new WaitForSeconds(delayBeforeNextScene);
+
+        if (string.IsNullOrWhiteSpace(nextSceneName))
+        {
+            Debug.LogError("[DialogueController] O nome da proxima cena esta vazio.");
+            isTransitioningScene = false;
+            yield break;
+        }
+
+        if (!Application.CanStreamedLevelBeLoaded(nextSceneName))
+        {
+            Debug.LogError($"[DialogueController] A cena '{nextSceneName}' nao esta na Build Settings / Build Profile.");
+            isTransitioningScene = false;
+            yield break;
+        }
+
+        SceneManager.LoadScene(nextSceneName);
     }
 
     private void SafeSetBool(Animator anim, bool value)
