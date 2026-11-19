@@ -13,18 +13,15 @@ public class FeedbackObstaculo : MonoBehaviour
         Cachorro
     }
 
-    [Header("Tipo")]
+    [Header("Obstáculo")]
     [SerializeField] private TipoObstaculo tipo;
-
-    [Header("Efeitos")]
     [SerializeField] private ObjetoRevelavel objetoRevelavel;
     [SerializeField] private AudioClip somContato;
-
-    [Header("Checkpoint")]
-    [SerializeField] private Transform pontoRetorno;
-
-    [Header("Configurações")]
     [SerializeField] private float intervaloContato = 1f;
+
+    [Header("Retorno")]
+    [SerializeField] private Transform pontoRetorno;
+    [SerializeField] private Transform[] pontosRetornoCarro;
 
     private AudioSource audioSource;
     private float proximoContato;
@@ -34,7 +31,8 @@ public class FeedbackObstaculo : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         if (objetoRevelavel == null)
-            objetoRevelavel = GetComponentInParent<ObjetoRevelavel>();
+            objetoRevelavel =
+                GetComponentInParent<ObjetoRevelavel>();
     }
 
     void OnCollisionEnter2D(Collision2D colisao)
@@ -77,24 +75,49 @@ public class FeedbackObstaculo : MonoBehaviour
 
     void RetornarCheckpoint(PlayerController jogador)
     {
-        if (pontoRetorno == null)
+        Transform destino = pontoRetorno;
+
+        if (tipo == TipoObstaculo.Carro)
+        {
+            float menorDistancia = float.MaxValue;
+
+            foreach (Transform ponto in pontosRetornoCarro)
+            {
+                if (ponto == null)
+                    continue;
+
+                float distancia = (
+                    ponto.position -
+                    jogador.transform.position
+                ).sqrMagnitude;
+
+                if (distancia < menorDistancia)
+                {
+                    menorDistancia = distancia;
+                    destino = ponto;
+                }
+            }
+        }
+
+        if (destino == null)
         {
             Debug.LogWarning(
-                "Checkpoint não configurado em: " + gameObject.name
+                "Nenhum ponto de retorno configurado!"
             );
             return;
         }
 
-        Rigidbody2D rb = jogador.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb =
+            jogador.GetComponent<Rigidbody2D>();
 
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
-            rb.position = pontoRetorno.position;
+            rb.position = destino.position;
         }
         else
         {
-            jogador.transform.position = pontoRetorno.position;
+            jogador.transform.position = destino.position;
         }
     }
 }
