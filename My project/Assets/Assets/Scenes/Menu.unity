@@ -710,15 +710,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22223563, g: 0.30215004, b: 0.3433962, a: 1}
+  m_Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -8878117659987974959, guid: bca1c39252288464d8fa66aa7997be11, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1106,7 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ee245fa96c7c84c9dacf068300df8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPrincipal
-  cenaInicial: CasaLurdes
+  cenaInicial: Cutscene 1
   audioSource: {fileID: 1749527659}
   somClique: {fileID: 8300000, guid: eceeaddf3c8eb86438da7305c409d883, type: 3}
   volumeClique: 0.5

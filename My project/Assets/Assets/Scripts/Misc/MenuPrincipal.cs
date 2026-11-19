@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class MenuPrincipal : MonoBehaviour
 {
     [Header("Cena Inicial")]
-    [SerializeField] private string cenaInicial = "CasaLurdes";
+    [SerializeField] private string cenaInicial = "Cutscene 1";
 
     [Header("Audio dos Botoes")]
     [SerializeField] private AudioSource audioSource;
@@ -29,13 +28,17 @@ public class MenuPrincipal : MonoBehaviour
         if (carregando)
             return;
 
-        Debug.Log("Botao Jogar pressionado!");
+        if (string.IsNullOrWhiteSpace(cenaInicial))
+        {
+            Debug.LogError("Nome da cena inicial esta vazio no MenuPrincipal!");
+            return;
+        }
 
         if (!Application.CanStreamedLevelBeLoaded(cenaInicial))
         {
             Debug.LogError(
-                "A cena " + cenaInicial +
-                " nao foi encontrada na Scene List!"
+                "A cena '" + cenaInicial +
+                "' nao foi encontrada na Build Settings (Scenes In Build)!"
             );
             return;
         }
@@ -68,8 +71,11 @@ public class MenuPrincipal : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.15f);
 
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
-        carregando = false;
+#endif
     }
 
     void TocarClique()
