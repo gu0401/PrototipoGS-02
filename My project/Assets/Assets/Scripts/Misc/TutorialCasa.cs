@@ -123,18 +123,18 @@ public class TutorialCasa : MonoBehaviour
 
             case Etapa.Bengala:
                 textoTutorial.text =
-                    "Pressione F para utilizar a bengala.";
+                    "Pressione F para utilizar a bengala e revelar qualquer objeto e buracos proxímos.";
                 break;
 
             case Etapa.Otto:
                 textoTutorial.text =
-                    "Pressione G para emitir o pulso do Otto.";
+                    "Pressione G para emitir o pulso do O.T.T.O e revelar vários objetos de uma vez, mas certas coisas não são reveladas.";
                 break;
 
             case Etapa.Saida:
                 textoTutorial.text = jogadorNaPorta
                     ? "Pressione E para sair de casa."
-                    : "Muito bem! Há caixas e um buraco na casa, teste as Mêcanicas neles e quando quiser saia pela porta";
+                    : "Muito bem! Essas são as Mecãnicas principais, caso já deseje sair é só se direcionar a porta";
                 break;
         }
     }
